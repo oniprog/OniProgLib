@@ -20,6 +20,9 @@
     <Filter Include="Test\GeoLib">
       <UniqueIdentifier>{36acd1e0-fa92-4a9f-b8cc-bb82681d83b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\MPIR">
+      <UniqueIdentifier>{3ab94ec5-574c-42f0-ba22-5e5d58a57c17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UnitTest.cpp">
@@ -31,6 +34,9 @@
     <ClCompile Include="Test\GeoLib\TestPoint_3.cpp">
       <Filter>Test\GeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestMath.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
@@ -38,6 +44,15 @@
     </ClInclude>
     <ClInclude Include="..\Library\GeoLib\Point_3.h">
       <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Math.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\MPIR\mpir.h">
+      <Filter>Library\MPIR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\MPIR\mpirxx.h">
+      <Filter>Library\MPIR</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
