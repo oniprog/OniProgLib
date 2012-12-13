@@ -86,10 +86,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Test\GeoLib\TestPoint_2.cpp" />
+    <ClCompile Include="Test\GeoLib\TestPoint_3.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h" />
+    <ClInclude Include="..\Library\GeoLib\Point_3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

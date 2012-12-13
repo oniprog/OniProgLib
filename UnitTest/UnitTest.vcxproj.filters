@@ -28,9 +28,15 @@
     <ClCompile Include="Test\GeoLib\TestPoint_2.cpp">
       <Filter>Test\GeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestPoint_3.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Point_3.h">
       <Filter>Library\GeoLib</Filter>
     </ClInclude>
   </ItemGroup>
