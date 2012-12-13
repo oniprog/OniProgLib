@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source File">
+      <UniqueIdentifier>{ad52f91b-3786-467e-a4f6-7e7cebecca4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{f58424e4-53aa-4b20-927e-ff0c152264ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\GeoLib">
+      <UniqueIdentifier>{ed4b0bc5-fe6b-4e76-9770-02d5132fd3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{e1d86b02-dbac-47e7-85a6-6b8fca32f6f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\GeoLib">
+      <UniqueIdentifier>{36acd1e0-fa92-4a9f-b8cc-bb82681d83b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="UnitTest.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestPoint_2.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Library\GeoLib\Point_2.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
