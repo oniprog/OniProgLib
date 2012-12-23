@@ -28,7 +28,7 @@ _Value	Determinant3x3(
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-// ３点のp1, p2, p3の曲がり方を判定する
+// 3点のp1, p2, p3の曲がり方を判定する
 template<class _Point_2 >
 typename _Point_2::value_type	Orient_2( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3 ) {
 
@@ -38,5 +38,16 @@ typename _Point_2::value_type	Orient_2( const _Point_2 &p1, const _Point_2 &p2, 
 	);
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+// 4点のp1, p2, p3, p4の位置関係を判定する
+template<class _Point_3>
+typename _Point_3::value_type	Orient_3( const _Point_3 &p1, const _Point_3 &p2, const _Point_3 &p3, const _Point_3 &p4 ) {
+
+	return Determinant3x3( 
+		p1.GetX() - p4.GetX(), p2.GetX() - p4.GetX(), p3.GetX() - p4.GetX(), 
+		p1.GetY() - p4.GetY(), p2.GetY() - p4.GetY(), p3.GetY() - p4.GetY(),
+		p1.GetZ() - p4.GetZ(), p2.GetZ() - p4.GetZ(), p3.GetZ() - p4.GetZ()
+	);
+}
 
 };	// namespace GeoLib

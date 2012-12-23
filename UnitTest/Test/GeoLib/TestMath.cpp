@@ -7,9 +7,11 @@
 
 #include "gtest/gtest.h"
 
-#include "GeoLib/Point_2.h"
 #include "GeoLib/Math.h"
 #include "MPIR/mpirxx.h"
+
+#include "GeoLib/Point_2.h"
+#include "GeoLib/Point_3.h"
 
 ///////////////////////////////////////////////////////////////////////////////////
 TEST( Determinant2x2, Test) {
@@ -79,5 +81,28 @@ TEST( Orient_2, Test1 ) {
 	EXPECT_TRUE( dInvRight > 0 );
 
 	double dInvLeft = GeoLib::Orient_2( p1, p4, p2 );	// swap p2, p4
+	EXPECT_TRUE( dInvLeft < 0 );
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+TEST( Orient_3, Test1 ) {
+
+	GeoLib::Point_3 p1(0,0,0), p2(1,0,0), p3(0,1,0),  p4(0,0,1), p5(0,0,-1), p6(2,2,0);
+
+	double dRight = GeoLib::Orient_3( p1, p2, p3, p4 );
+	EXPECT_TRUE( dRight < 0 );
+
+	double dLeft = GeoLib::Orient_3( p1, p2, p3, p5 );
+	EXPECT_TRUE( dLeft > 0 );
+
+	double dZero = GeoLib::Orient_3( p1, p2, p3, p6 );
+	EXPECT_NEAR( 0.0, dZero, 1E-30 );
+
+	double dInvRight = GeoLib::Orient_3( p1, p2, p4, p3 );	// swap p3, p4
+	EXPECT_TRUE( dInvRight > 0 );
+
+	double dInvLeft = GeoLib::Orient_3( p1, p2, p5, p3 );	// swap p3, p5
 	EXPECT_TRUE( dInvLeft < 0 );
 }
