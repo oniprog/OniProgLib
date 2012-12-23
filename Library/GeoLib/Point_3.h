@@ -11,6 +11,8 @@ namespace GeoLib {
 
 template<class _Value>
 class Point_3T {
+public:
+	typedef _Value	value_type;
 
 public:
 	Point_3T() {}	// 高速化のために未初期化
