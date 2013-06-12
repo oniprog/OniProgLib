@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "Point_2.h"
+
 namespace GeoLib {
 
 template<class _Value>
@@ -81,5 +83,29 @@ private:
 };
 
 typedef GeoLib::Point_3T<double>	Point_3;
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+namespace traits {
+
+template<>
+struct access<Point_3,0> {
+	static Point_3::value_type get(Point_3 const & p ) {
+		return p.GetX();
+	}
+};
+template<>
+struct access<Point_3,1> {
+	static Point_3::value_type get(Point_3 const & p ) {
+		return p.GetY();
+	}
+};
+template<>
+struct access<Point_3,2> {
+	static Point_3::value_type get(Point_3 const & p ) {
+		return p.GetZ();
+	}
+};
+
+};  // namespace traits
 
 };	// namespace GeoLib

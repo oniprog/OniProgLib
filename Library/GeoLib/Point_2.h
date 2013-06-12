@@ -19,6 +19,13 @@ public:
 	Point_2T( const _Value &v1_, const _Value &v2_ ) {
 		Define( v1_, v2_ );
 	}
+	Point_2T( _Value && v1_, _Value && v2_ ) {
+		Define( v1_, v2_ );
+	}
+	template<class _Point>
+	Point_2T( const _Point &pt) {
+		Define( _Value(pt.GetX()), _Value(pt.GetY()) );
+	}
 
 	void	Define( const _Value &v1_, const _Value &v2_ ) {
 		m_v[0] = v1_;	m_v[1] = v2_;
@@ -73,6 +80,35 @@ private:
 	_Value		m_v[2];
 };
 
-typedef GeoLib::Point_2T<double>	Point_2;
+typedef Point_2T<double>	Point_2;
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+namespace traits {
+
+template<typename P, int D>
+struct access {};
+
+template<typename V>
+struct access<Point_2T<V>,0> {
+	static typename Point_2T<V>::value_type get(Point_2T<V> const & p ) {
+		return p.GetX();
+	}
+};
+
+template<typename V>
+struct access<Point_2T<V>,1> {
+	static typename Point_2T<V>::value_type get(Point_2T<V> const & p ) {
+		return p.GetY();
+	}
+};
+
+};  // namespace traits
+
+// アクセス関数
+template<int D, typename P>
+inline typename P::value_type get( const P &p ) {
+	return traits::access<P, D>::get(p);
+}
 
 };	// namespace GeoLib
+

@@ -1,0 +1,25 @@
+
+Library/boost_1_53_0
+UnitTest/Debug
+UnitTest/Release
+UnitTest/ipch
+UnitTest/unitest.txt
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+*.sdf
+*.suo
+*.opensdf
+
