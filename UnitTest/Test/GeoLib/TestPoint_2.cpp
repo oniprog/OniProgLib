@@ -9,6 +9,7 @@
 
 #include "GeoLib/Point_2.h"
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestPlus ) {
 
 	GeoLib::Point_2		p1(0.0,1.1);
@@ -19,6 +20,7 @@ TEST( Point_2, TestPlus ) {
 	EXPECT_NEAR( 4.4, p3.GetY(), 1E-8 );
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestMinus ) {
 
 	GeoLib::Point_2		p1(0.0,1.1);
@@ -29,6 +31,7 @@ TEST( Point_2, TestMinus ) {
 	EXPECT_NEAR( -2.2, p3.GetY(), 1E-8 );
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestMul ) {
 
 	GeoLib::Point_2		p1(0.0,1.1);
@@ -44,6 +47,7 @@ TEST( Point_2, TestMul ) {
 	EXPECT_NEAR( 9.9, p4.GetY(), 1E-8 );
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestSetGet ) {
 
 	GeoLib::Point_2 p1;
@@ -54,6 +58,7 @@ TEST( Point_2, TestSetGet ) {
 	EXPECT_EQ( 2.0, p1.GetY() );
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestSetGet2 ) {
 
 	GeoLib::Point_2 p1;
@@ -64,6 +69,7 @@ TEST( Point_2, TestSetGet2 ) {
 	EXPECT_EQ( 2.0, p1.Get(1) );
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 TEST( Point_2, TestNormalize ) {
 
 	GeoLib::Point_2 p1(1.0, 2.0);

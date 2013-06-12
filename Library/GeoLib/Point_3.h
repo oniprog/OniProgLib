@@ -65,6 +65,10 @@ public:
 		m_v[2] *= dMul;
 	}
 
+	friend Point_3T<_Value>		operator-( const Point_3T<_Value> &p1 ) {
+		return Point_3T<_Value>( -p1.GetX(), -p1.GetY(), -p1.GetZ() );
+	}
+
 	friend Point_3T<_Value>		operator+( const Point_3T<_Value> &p1, const Point_3T<_Value> &p2 ) {
 		return Point_3T<_Value>( p1.GetX() + p2.GetX(), p1.GetY() + p2.GetY(), p1.GetZ() + p2.GetZ() );
 	}
