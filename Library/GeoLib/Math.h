@@ -7,6 +7,10 @@
 
 #pragma once
 
+#include <limits>
+//#include "../MPIR/mpirxx.h"
+#include "boost/multiprecision/gmp.hpp"
+
 namespace GeoLib {
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -30,10 +34,10 @@ _Value	Determinant3x3(
 ///////////////////////////////////////////////////////////////////////////////////
 // 3点のp1, p2, p3の曲がり方を判定する
 template<class _Point_2 >
-typename _Point_2::value_type	Orient_2( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3 ) {
+typename _Point_2::value_type Orient_2( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3 ) {
 
 	return Determinant2x2( 
-		p1.GetX() - p3.GetX(), p2.GetX() - p3.GetX(), 
+		get<0>(p1) - get<0>(p3), p2.GetX() - p3.GetX(), 
 		p1.GetY() - p3.GetY(), p2.GetY() - p3.GetY() 
 	);
 }
@@ -49,5 +53,43 @@ typename _Point_3::value_type	Orient_3( const _Point_3 &p1, const _Point_3 &p2, 
 		p1.GetZ() - p4.GetZ(), p2.GetZ() - p4.GetZ(), p3.GetZ() - p4.GetZ()
 	);
 }
+
+///////////////////////////////////////////////////////////////////////////////////
+// 2次の行列式
+template<class _Value>
+_Value	DeterminantAbs2x2( const _Value &v1, const _Value &v2, const _Value &v3, const _Value &v4 ) {
+	return std::fabs(v1 * v4) + std::fabs(v2 * v3);
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// 絶対値
+template<class _Point_2 >
+typename _Point_2::value_type	OrientAbs_2( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3 ) {
+
+	return DeterminantAbs2x2( 
+		p1.GetX() - p3.GetX(), p2.GetX() - p3.GetX(), 
+		p1.GetY() - p3.GetY(), p2.GetY() - p3.GetY() 
+		);
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// 3点のp1, p2, p3の曲がり方を判定する(適応型無誤差演算版)
+template<class _Point_2>
+typename _Point_2::value_type	OrientExact_2( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3 ) {
+
+	// 誤差を見積もりつつ計算する
+	typedef _Point_2::value_type V;
+	V dOrient = Orient_2( p1, p2, p3 );
+	V dGosaValue = OrientAbs_2( p1, p2, p3 ) * std::numeric_limits<double>::epsilon() * 5;
+	if ( std::fabs(dOrient) > dGosaValue )
+		return dOrient;	// 計算値が誤差よりも大きいのでOK
+
+	// 無誤差演算で計算する
+	//	typedef Point_2T<mpq_class> PQ;		// やっぱり自前でラッパーを作る必要があるかな．．．
+	typedef Point_2T<boost::multiprecision::gmp_rational> PQ;
+	return mpq_get_d( Orient_2( PQ(p1), PQ(p2), PQ(p3) ).data() );
+
+}
+
 
 };	// namespace GeoLib
