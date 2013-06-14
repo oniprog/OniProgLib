@@ -54,5 +54,8 @@
     <ClInclude Include="..\Library\MPIR\mpirxx.h">
       <Filter>Library\MPIR</Filter>
     </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Rational.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
