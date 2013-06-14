@@ -54,10 +54,21 @@ typename _Point_3::value_type	Orient_3( const _Point_3 &p1, const _Point_3 &p2, 
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-// 2次の行列式
+// 2次の行列式の絶対値
 template<class _Value>
 _Value	DeterminantAbs2x2( const _Value &v1, const _Value &v2, const _Value &v3, const _Value &v4 ) {
 	return std::fabs(v1 * v4) + std::fabs(v2 * v3);
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// 3次の行列式の絶対値
+template<class _Value>
+_Value	DeterminantAbs3x3( 
+	const _Value &v1, const _Value &v2, const _Value &v3, 
+	const _Value &v4, const _Value &v5, const _Value &v6, 
+	const _Value &v7, const _Value &v8, const _Value &v9 
+) {
+	return std::fabs(v1) * DeterminantAbs2x2( v5, v6, v8, v9) + std::fabs(v2) * DeterminantAbs2x2( v4, v6, v7, v9) + std::fabs(v3) * DeterminantAbs2x2( v4, v5, v7, v8 );
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -84,11 +95,73 @@ typename _Point_2::value_type	OrientExact_2( const _Point_2 &p1, const _Point_2 
 		return dOrient;	// 計算値が誤差よりも大きいのでOK
 
 	// 無誤差演算で計算する
-	typedef boost::multiprecision::number<boost::multiprecision::gmp_rational, boost::multiprecision::et_off> ZZ;
-	typedef Point_2T<ZZ> PQ;
-	return mpq_get_d( Orient_2( PQ(p1), PQ(p2), PQ(p3) ).backend().data() );
+	typedef Point_2T<GeoLib::Rational> RP;
+	return GeoLib::static_rational_cast<double>( Orient_2( RP(p1), RP(p2), RP(p3) ) );
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+/// InCircleテスト
+template<class _Point_2>
+typename _Point_2::value_type	InCircle( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3, const _Point_2 &p4 ) {
+
+	double adx = get<0>(p1) - get<0>(p4);
+	double ady = get<1>(p1) - get<1>(p4);
+	double bdx = get<0>(p2) - get<0>(p4);
+	double bdy = get<1>(p2) - get<1>(p4);
+	double cdx = get<0>(p3) - get<0>(p4);
+	double cdy = get<1>(p3) - get<1>(p4);
+
+	return GeoLib::Determinant3x3(
+		get<0>(p1) - get<0>(p4), get<1>(p1) - get<1>(p4), adx*adx + ady*ady,
+		get<0>(p2) - get<0>(p4), get<1>(p2) - get<1>(p4), bdx*bdx + bdy*bdy,
+		get<0>(p3) - get<0>(p4), get<1>(p3) - get<1>(p4), cdx*cdx + cdy*cdy
+    );
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+/// InCircleテスト
+template<class _Point_2>
+typename _Point_2::value_type	InCircleExact( const _Point_2 &p1, const _Point_2 &p2, const _Point_2 &p3, const _Point_2 &p4 ) {
+
+    double adx = get<0>(p1) - get<0>(p4);
+    double ady = get<1>(p1) - get<1>(p4);
+    double bdx = get<0>(p2) - get<0>(p4);
+    double bdy = get<1>(p2) - get<1>(p4);
+    double cdx = get<0>(p3) - get<0>(p4);
+    double cdy = get<1>(p3) - get<1>(p4);
+
+    double dDet = GeoLib::Determinant3x3(
+        get<0>(p1) - get<0>(p4), get<1>(p1) - get<1>(p4), adx*adx + ady*ady,
+        get<0>(p2) - get<0>(p4), get<1>(p2) - get<1>(p4), bdx*bdx + bdy*bdy,
+        get<0>(p3) - get<0>(p4), get<1>(p3) - get<1>(p4), cdx*cdx + cdy*cdy
+    );
+
+    double dDetAbs = GeoLib::DeterminantAbs3x3(
+        get<0>(p1) - get<0>(p4), get<1>(p1) - get<1>(p4), adx*adx + ady*ady,
+        get<0>(p2) - get<0>(p4), get<1>(p2) - get<1>(p4), bdx*bdx + bdy*bdy,
+        get<0>(p3) - get<0>(p4), get<1>(p3) - get<1>(p4), cdx*cdx + cdy*cdy
+    );
+
+	if ( std::fabs(dDet) > dDetAbs*std::numeric_limits<double>::epsilon()*12 )
+		return dDet;
+
+    {
+		typedef GeoLib::Rational RA;
+        RA adx(RA(get<0>(p1)) - RA(get<0>(p4)));
+		RA ady(RA(get<1>(p1)) - RA(get<1>(p4)));
+		RA bdx(RA(get<0>(p2)) - RA(get<0>(p4)));
+		RA bdy(RA(get<1>(p2)) - RA(get<1>(p4)));
+		RA cdx(RA(get<0>(p3)) - RA(get<0>(p4)));
+		RA cdy(RA(get<1>(p3)) - RA(get<1>(p4)));
+	
+		RA dDet = GeoLib::Determinant3x3(
+            RA(get<0>(p1)) - RA(get<0>(p4)), RA(get<1>(p1)) - RA(get<1>(p4)), adx*adx + ady*ady,
+            RA(get<0>(p2)) - RA(get<0>(p4)), RA(get<1>(p2)) - RA(get<1>(p4)), bdx*bdx + bdy*bdy,
+            RA(get<0>(p3)) - RA(get<0>(p4)), RA(get<1>(p3)) - RA(get<1>(p4)), cdx*cdx + cdy*cdy
+		);
+		return static_rational_cast<double>(dDet);
+    }
+}
 
 };	// namespace GeoLib

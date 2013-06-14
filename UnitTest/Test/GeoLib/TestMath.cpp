@@ -15,6 +15,7 @@
 
 #include "GeoLib/Point_2.h"
 #include "GeoLib/Point_3.h"
+#include "GeoLib/Rational.h"
 
 ///////////////////////////////////////////////////////////////////////////////////
 TEST( Determinant2x2, Test) {
@@ -26,9 +27,8 @@ TEST( Determinant2x2, Test) {
 ///////////////////////////////////////////////////////////////////////////////////
 TEST( Determinant2x2, TestMPZ) {
 
-	typedef boost::multiprecision::mpq_rational Z;
-	Z a(1.0), b(2.0),c(3.0),d(4.0);
-    double dAns = mpq_get_d( GeoLib::Determinant2x2( a, b, c, d ).backend().data() );
+	GeoLib::Rational a(1.0), b(2.0),c(3.0),d(4.0);
+    double dAns = GeoLib::static_rational_cast<double>( GeoLib::Determinant2x2( a, b, c, d ) );
 	EXPECT_NEAR( -2, dAns, 1E-8 );
 }
 
@@ -133,4 +133,49 @@ TEST( Orient_3, Test1 ) {
 
 	double dInvLeft = GeoLib::Orient_3( p1, p2, p5, p3 );	// swap p3, p5
 	EXPECT_TRUE( dInvLeft < 0 );
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+TEST( InCircle, Test1 ) {
+
+	GeoLib::Point_2 p1(-1,0), p2(1,0), p3(0,1);
+
+	double dIn1 = GeoLib::InCircle( p1, p2, p3, GeoLib::Point_2(0,0));
+	EXPECT_TRUE( dIn1 > 0 );
+
+	double dIn2 = GeoLib::InCircle( p1, p2, p3, GeoLib::Point_2(2,0));
+	EXPECT_TRUE( dIn2 < 0 );
+
+	double dIn3 = GeoLib::InCircle( p2, p1, p3, GeoLib::Point_2(0,0));
+	EXPECT_TRUE( dIn3 < 0 );
+
+	double dIn4 = GeoLib::InCircle( p2, p1, p3, GeoLib::Point_2(2,0));
+	EXPECT_TRUE( dIn4 > 0 );
+
+	double dIn5 = GeoLib::InCircle( p1, p2, p3, GeoLib::Point_2(0,-1));
+	EXPECT_NEAR( 0, dIn5, 1E-8 );
+}
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+TEST( InCircleExact, Test1 ) {
+
+	GeoLib::Point_2 p1(-1,0), p2(1,0), p3(0,1);
+
+	double dIn1 = GeoLib::InCircleExact( p1, p2, p3, GeoLib::Point_2(0,0));
+	EXPECT_TRUE( dIn1 > 0 );
+
+	double dIn2 = GeoLib::InCircleExact( p1, p2, p3, GeoLib::Point_2(2,0));
+	EXPECT_TRUE( dIn2 < 0 );
+
+	double dIn3 = GeoLib::InCircleExact( p2, p1, p3, GeoLib::Point_2(0,0));
+	EXPECT_TRUE( dIn3 < 0 );
+
+	double dIn4 = GeoLib::InCircleExact( p2, p1, p3, GeoLib::Point_2(2,0));
+	EXPECT_TRUE( dIn4 > 0 );
+
+	double dIn5 = GeoLib::InCircleExact( p1, p2, p3, GeoLib::Point_2(0,-1));
+	EXPECT_NEAR( 0, dIn5, 1E-8 );
 }
