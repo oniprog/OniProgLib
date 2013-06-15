@@ -37,6 +37,9 @@
     <ClCompile Include="Test\GeoLib\TestMath.cpp">
       <Filter>Test\GeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestDelaunay.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
@@ -55,6 +58,9 @@
       <Filter>Library\MPIR</Filter>
     </ClInclude>
     <ClInclude Include="..\Library\GeoLib\Rational.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Delaunay.h">
       <Filter>Library\GeoLib</Filter>
     </ClInclude>
   </ItemGroup>

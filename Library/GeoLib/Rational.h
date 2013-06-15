@@ -26,12 +26,14 @@ T static_rational_cast( Rational &&r ) {
 
 // doubleへのCASTを定義する
 template<>
+inline
 double static_rational_cast<double>(const Rational&r ) {
 	return mpq_get_d( r.backend().data() );
 }
 
 // doubleへのCASTを定義する
 template<>
+inline
 double static_rational_cast<double>( Rational&& r ) {
 	return mpq_get_d( r.backend().data() );
 }

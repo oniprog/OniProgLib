@@ -10,6 +10,8 @@
 #include <limits>
 #include "boost/multiprecision/gmp.hpp"
 
+const int EXACT_FLAG = 1;
+
 namespace GeoLib {
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +93,7 @@ typename _Point_2::value_type	OrientExact_2( const _Point_2 &p1, const _Point_2 
 	typedef _Point_2::value_type V;
 	V dOrient = Orient_2( p1, p2, p3 );
 	V dGosaValue = OrientAbs_2( p1, p2, p3 ) * std::numeric_limits<double>::epsilon() * 5;
-	if ( std::fabs(dOrient) > dGosaValue )
+	if ( !EXACT_FLAG || std::fabs(dOrient) > dGosaValue )
 		return dOrient;	// 計算値が誤差よりも大きいのでOK
 
 	// 無誤差演算で計算する
@@ -143,7 +145,7 @@ typename _Point_2::value_type	InCircleExact( const _Point_2 &p1, const _Point_2 
         get<0>(p3) - get<0>(p4), get<1>(p3) - get<1>(p4), cdx*cdx + cdy*cdy
     );
 
-	if ( std::fabs(dDet) > dDetAbs*std::numeric_limits<double>::epsilon()*12 )
+	if ( !EXACT_FLAG || std::fabs(dDet) > dDetAbs*std::numeric_limits<double>::epsilon()*12 )
 		return dDet;
 
     {

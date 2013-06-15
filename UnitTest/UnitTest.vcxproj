@@ -86,12 +86,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Test\GeoLib\TestDelaunay.cpp" />
     <ClCompile Include="Test\GeoLib\TestMath.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_2.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_3.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Library\GeoLib\Delaunay.h" />
     <ClInclude Include="..\Library\GeoLib\Math.h" />
     <ClInclude Include="..\Library\GeoLib\Point_2.h" />
     <ClInclude Include="..\Library\GeoLib\Point_3.h" />
