@@ -24,7 +24,7 @@ TEST( Delaunay2D, Test1 ) {
     boost::uniform_real<> real(0,1);
     auto rand = boost::variate_generator<boost::mt19937&, boost::uniform_real<>>( mt19937, real );
 
-    for( int it=0; it<10; ++it ) {
+    for( int it=0; it<20; ++it ) {
 
         listPoint.push_back( Point_2(rand()*1000, rand()*1000) );
     }

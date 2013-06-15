@@ -43,6 +43,12 @@
     <ClCompile Include="Test\GeoLib\TestCrossSegment.cpp">
       <Filter>Test\GeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestCrossPoint.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestDistance.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
@@ -67,6 +73,12 @@
       <Filter>Library\GeoLib</Filter>
     </ClInclude>
     <ClInclude Include="..\Library\GeoLib\CrossSegment.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\CrossPoint.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Distance.h">
       <Filter>Library\GeoLib</Filter>
     </ClInclude>
   </ItemGroup>

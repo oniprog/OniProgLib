@@ -86,16 +86,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Test\GeoLib\TestCrossPoint.cpp" />
     <ClCompile Include="Test\GeoLib\TestCrossSegment.cpp" />
     <ClCompile Include="Test\GeoLib\TestDelaunay.cpp" />
+    <ClCompile Include="Test\GeoLib\TestDistance.cpp" />
     <ClCompile Include="Test\GeoLib\TestMath.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_2.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_3.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Library\GeoLib\CrossPoint.h" />
     <ClInclude Include="..\Library\GeoLib\CrossSegment.h" />
     <ClInclude Include="..\Library\GeoLib\Delaunay.h" />
+    <ClInclude Include="..\Library\GeoLib\Distance.h" />
     <ClInclude Include="..\Library\GeoLib\Math.h" />
     <ClInclude Include="..\Library\GeoLib\Point_2.h" />
     <ClInclude Include="..\Library\GeoLib\Point_3.h" />

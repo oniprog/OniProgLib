@@ -1,0 +1,20 @@
+﻿///////////////////////////////////////////////////////////////////////////////////
+/** @file
+	@brief	距離計算のテスト
+	@author	oniprog
+*/
+///////////////////////////////////////////////////////////////////////////////////
+
+#include "gtest/gtest.h"
+
+#include "GeoLib/Point_2.h"
+#include "GeoLib/Distance.h"
+
+typedef GeoLib::Point_2 Point_2;
+
+///////////////////////////////////////////////////////////////////////////////////
+TEST( GetDistancePP, Test1 ) {
+
+    double dDist = GeoLib::GetDistancePP_2( Point_2(1,1), Point_2(10,2) );
+    EXPECT_NEAR( std::sqrt(81.0+1.0), dDist, 1E-8 );
+}

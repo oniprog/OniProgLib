@@ -13,16 +13,6 @@
 typedef GeoLib::Point_2   Point_2;
 
 ///////////////////////////////////////////////////////////////////////////////////
-TEST(GetCrossLine_2, Test1 ) {
-
-    Point_2 poiCross;
-    ASSERT_TRUE( GeoLib::GetCrossLine_2(poiCross, Point_2(0,0), Point_2(10,10), Point_2(2,5), Point_2(10,5) ) );
-
-    EXPECT_NEAR( 5.0, GeoLib::get<0>(poiCross), 1E-8 );
-    EXPECT_NEAR( 5.0, GeoLib::get<1>(poiCross), 1E-8 );
-}
-
-///////////////////////////////////////////////////////////////////////////////////
 TEST(CrossSegment_2, Test1) {
 
     GeoLib::CrossSegment_2 cs(1E-3);
@@ -51,3 +41,38 @@ TEST(CrossSegment_2, Test2) {
 
     ASSERT_EQ( 18, cs.size() );     // アルゴリズムに変更があったら引っかかるだろう．．．
 }
+
+#if 0
+///////////////////////////////////////////////////////////////////////////////////
+TEST(CrossSegment_2, Test3) {
+
+    GeoLib::CrossSegment_2 cs(1E-3);
+    std::vector<Point_2> listEdge;
+
+    boost::mt19937 mt19937(0);
+    boost::uniform_real<> real(0,1);
+    auto rand = boost::variate_generator<boost::mt19937&, boost::uniform_real<>>( mt19937, real );
+
+    for( int it=0; it<200; ++it) {
+        listEdge.push_back( Point_2(rand()*1000, rand()*1000 ) );
+        listEdge.push_back( listEdge.back() + Point_2(rand()*400-200, rand()*400-200) );
+    }
+
+    cs.Apply( listEdge.begin(), listEdge.end() );
+
+    FILE *wfp = fopen("c:\\tmp\\b.tin", "w");
+    auto ii = cs.cbegin(), ii_end = cs.cend();
+    for(; ii != ii_end; ) {
+
+        double dR = rand();
+        double dG = rand();
+        double dB = rand();
+
+        auto pe1 = **ii; ++ii;
+        fprintf(wfp, "%lf,%lf,%lf,%lf,%lf,%lf,1.0\n", GeoLib::get<0>(pe1), GeoLib::get<1>(pe1), 10.0, dR ,dG, dB  );
+        auto pe2 = **ii; ++ii;
+        fprintf(wfp, "%lf,%lf,%lf,%lf,%lf,%lf,1.0\n", GeoLib::get<0>(pe2), GeoLib::get<1>(pe2), 10.0, dR ,dG, dB );
+        fprintf(wfp, "%lf,%lf,%lf,%lf,%lf,%lf,1.0\n", GeoLib::get<0>(pe2), GeoLib::get<1>(pe2), 10.0, dR ,dG, dB );
+    }
+}
+#endif
