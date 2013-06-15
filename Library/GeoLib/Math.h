@@ -10,9 +10,26 @@
 #include <limits>
 #include "boost/multiprecision/gmp.hpp"
 
+#include "GeoLib/Rational.h"
+
 const int EXACT_FLAG = 1;
 
 namespace GeoLib {
+
+///////////////////////////////////////////////////////////////////////////////////
+// 内積計算
+template<class _Point_2 >
+typename _Point_2::value_type CrossProduct_2( const _Point_2 &p1, const _Point_2 &p2) {
+    return get<0>(p1) * get<1>(p2) - get<1>(p1) * get<0>(p2);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// 内積計算
+template<class _Point_2 >
+typename _Point_2::value_type DotProduct_2( const _Point_2 &p1, const _Point_2 &p2) {
+    return get<0>(p1) * get<0>(p2) + get<1>(p1) * get<1>(p2);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////
 // 2次の行列式
