@@ -2,14 +2,14 @@
 oniprogのオープンソースライブラリです
 
 ドキュメントを作成しました．
-https://github.com/oniprog/OniProgLib/Document/manual.pdf
+https://github.com/oniprog/OniProgLib/blob/master/Document/Manual.pdf
 
 コメントなど頂けたらうれしいです．
 なお，激しくWindows依存ですが，ご容赦ください．
 
 # ライセンス
 
-このライブラリ自体のライセンスは**Public Domain**としますが，
+このライブラリ自体のライセンスは*Public Domain*としますが，
 
 *MPIR*(http://www.mpir.org/)
 と
