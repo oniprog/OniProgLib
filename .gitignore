@@ -4,6 +4,7 @@ UnitTest/Debug
 UnitTest/Release
 UnitTest/ipch
 UnitTest/unitest.txt
+Document/Manual.jtdc
 
 # Compiled Object files
 *.slo
