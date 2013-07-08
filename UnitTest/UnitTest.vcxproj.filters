@@ -23,6 +23,12 @@
     <Filter Include="Library\MPIR">
       <UniqueIdentifier>{3ab94ec5-574c-42f0-ba22-5e5d58a57c17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\ExactDouble">
+      <UniqueIdentifier>{03a889d0-e26c-4bad-8d58-d501a9c017a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\ExactDoubleFast">
+      <UniqueIdentifier>{5dd3e93f-0a83-4462-b4a2-476d7512a7d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UnitTest.cpp">
@@ -48,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="Test\GeoLib\TestDistance.cpp">
       <Filter>Test\GeoLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\ExactDouble\TestExactDoubleFast.cpp">
+      <Filter>Test\ExactDoubleFast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="..\Library\GeoLib\Distance.h">
       <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\ExactDouble\ExactDoubleFast.h">
+      <Filter>Library\ExactDouble</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
