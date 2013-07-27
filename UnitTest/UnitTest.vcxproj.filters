@@ -29,6 +29,12 @@
     <Filter Include="Test\ExactDoubleFast">
       <UniqueIdentifier>{5dd3e93f-0a83-4462-b4a2-476d7512a7d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\ThreadLib">
+      <UniqueIdentifier>{9f557d14-cad9-4834-a5ed-2c3f750e1328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\ThreadLib">
+      <UniqueIdentifier>{92ab34b0-ea27-4cee-8b98-111414bfb8db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UnitTest.cpp">
@@ -57,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="Test\ExactDouble\TestExactDoubleFast.cpp">
       <Filter>Test\ExactDoubleFast</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\ThreadLib\TestThreadSmartPointer.cpp">
+      <Filter>Test\ThreadLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="..\Library\ExactDouble\ExactDoubleFast.h">
       <Filter>Library\ExactDouble</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\ThreadLib\ThreadSmartPointer.h">
+      <Filter>Library\ThreadLib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
