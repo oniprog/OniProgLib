@@ -24,3 +24,10 @@ Document/Manual.jtdc
 *.suo
 *.opensdf
 
+
+*.aps
+*.$*
+TestApp/DelaunayViewer/Release
+TestApp/DelaunayViewer/Debug
+ipch
+
