@@ -26,6 +26,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -70,9 +71,9 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_53_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_54_0</AdditionalIncludeDirectories>
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
@@ -81,7 +82,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\lib\win32\release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>msvcprt.lib;gtest_md.lib;mpir.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msvcprt.lib;gtest_md_vc110.lib;mpir.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>mvcrt.lib;libcmt.lib;msvcprt.lib;libcpmt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
