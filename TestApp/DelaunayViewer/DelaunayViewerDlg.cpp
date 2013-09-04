@@ -14,6 +14,7 @@
 #include "DelaunayViewerDlg.h"
 #include "afxdialogex.h"
 
+#include "GeoLib/Triangulation2D.h"
 #include "GeoLib/Delaunay.h"
 
 
@@ -217,6 +218,18 @@ void CDelaunayViewerDlg::CalcDelaunay() {
     if ( g_listPoint.size() < 3 )
         return;
     
+#if 0
+    // ヒューリスティクス手法による分割
+    GeoLib::Triangulation2D triangulation;
+    triangulation.Apply( g_listPoint.begin(), g_listPoint.end() );
+
+    auto ii = triangulation.cbegin(), ii_end = triangulation.cend();
+    for( ; ii != ii_end; ++ii ) {
+        g_listTris.push_back( g_listPoint[*ii] );
+    }
+
+#else
+    // ドロネー分割手法による分割
     GeoLib::Delaunay2D<> delaunay;
     delaunay.Apply( g_listPoint.begin(), g_listPoint.end() );
 
@@ -224,6 +237,7 @@ void CDelaunayViewerDlg::CalcDelaunay() {
     for( ; ii != ii_end; ++ii ) {
         g_listTris.push_back( g_listPoint[*ii] );
     }
+#endif
 }
 
 void CDelaunayViewerDlg::OnLButtonDblClk(UINT nFlags, CPoint point)

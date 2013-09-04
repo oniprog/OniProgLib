@@ -67,6 +67,9 @@
     <ClCompile Include="Test\ThreadLib\TestThreadSmartPointer.cpp">
       <Filter>Test\ThreadLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestTriangulation2D.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
@@ -104,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="..\Library\ThreadLib\ThreadSmartPointer.h">
       <Filter>Library\ThreadLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\Triangulation2D.h">
+      <Filter>Library\GeoLib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

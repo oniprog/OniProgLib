@@ -95,6 +95,7 @@
     <ClCompile Include="Test\GeoLib\TestMath.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_2.cpp" />
     <ClCompile Include="Test\GeoLib\TestPoint_3.cpp" />
+    <ClCompile Include="Test\GeoLib\TestTriangulation2D.cpp" />
     <ClCompile Include="Test\ThreadLib\TestThreadSmartPointer.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
@@ -108,6 +109,7 @@
     <ClInclude Include="..\Library\GeoLib\Point_2.h" />
     <ClInclude Include="..\Library\GeoLib\Point_3.h" />
     <ClInclude Include="..\Library\GeoLib\Rational.h" />
+    <ClInclude Include="..\Library\GeoLib\Triangulation2D.h" />
     <ClInclude Include="..\Library\MPIR\mpir.h" />
     <ClInclude Include="..\Library\MPIR\mpirxx.h" />
     <ClInclude Include="..\Library\ThreadLib\ThreadSmartPointer.h" />
