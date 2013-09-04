@@ -31,4 +31,9 @@ Document/Manual.jtdc
 TestApp/DelaunayViewer/Release
 TestApp/DelaunayViewer/Debug
 ipch
+*.psess
+*.user
+OLib
+*~
+*.swp
 
