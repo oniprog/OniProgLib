@@ -21,8 +21,8 @@ TEST( TestTriangulation2D, Test1 ) {
     boost::uniform_real<> real(0,1);
     auto rand = boost::variate_generator<boost::mt19937&, boost::uniform_real<>>( mt19937, real );
 
-//    GeoLib::Triangulation2D triangulation;
-    GeoLib::Delaunay2D<> triangulation;
+    GeoLib::Triangulation2D triangulation;
+//		GeoLib::Delaunay2D<> triangulation;
 
     std::vector<Point_2> listPoint;
 
@@ -36,7 +36,7 @@ TEST( TestTriangulation2D, Test1 ) {
     triangulation.Apply( listPoint.begin(), listPoint.end() );
 
     DWORD nEndTime = GetTickCount();
-//    printf("elipsed time : %d\n", nEndTime-nBeginTime );
+    printf("elipsed time : %d\n", nEndTime-nBeginTime );
 
 #if 0
     {

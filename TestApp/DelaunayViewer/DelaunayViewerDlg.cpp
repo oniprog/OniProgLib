@@ -218,7 +218,7 @@ void CDelaunayViewerDlg::CalcDelaunay() {
     if ( g_listPoint.size() < 3 )
         return;
     
-#if 0
+#if 1
     // ヒューリスティクス手法による分割
     GeoLib::Triangulation2D triangulation;
     triangulation.Apply( g_listPoint.begin(), g_listPoint.end() );

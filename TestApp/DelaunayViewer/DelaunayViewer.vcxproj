@@ -79,7 +79,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\library;..\..\library\boost_1_53_0;..\..\library\mpir</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\library;..\..\library\boost_1_54_0;..\..\library\mpir</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>

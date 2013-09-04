@@ -42,6 +42,9 @@ public:
     template<class _Iterator>
     void    Apply(_Iterator __begin, _Iterator __end ) {
 
+		const double dWidthRatio = 0.8776;
+		const double dLowScore = 0.6;
+
         // 結果をクリアする
         m_dicTriangle.Clear();
         m_listResult.clear();
@@ -73,6 +76,7 @@ public:
 
         for( int ip=1; ip<(int)listOrder.size(); ++ip ) {
 
+			bool bFinal = ip == static_cast<int>(listOrder.size()-1);
             auto poi = GetPoint(ip, listOrder, listSrc );
 
             // 挿入位置を探す
@@ -158,6 +162,58 @@ public:
                     listHead.insert( listHead.begin() + ipp + 1, ip );
                 }
             }
+			if ( listHead.size() > 2 ) {
+				// 穴埋め作業
+				std::vector<double> listScore( listHead.size()-2 );
+				while(true) {
+
+					bool bFind = false;
+					int iFind = 0;
+					double dBestScore = 0.0;
+
+					for( int ip2=0; ip2<(int)listHead.size()-2; ++ip2 ) {
+
+						if ( listScore[ip2] < 0 )
+							continue;
+
+						double dScore = listScore[ip2];
+						auto pt1 = GetPoint( listHead[ip2+0], listOrder, listSrc );
+						auto pt2 = GetPoint( listHead[ip2+1], listOrder, listSrc );
+						auto pt3 = GetPoint( listHead[ip2+2], listOrder, listSrc );
+						if ( dScore == 0 ) {
+
+							if ( Orient_2( pt1, pt2, pt3) >= 0 ) {
+								listScore[ip2] = -1;
+								continue;
+							}
+
+							dScore = CalcTriangleScore( pt1, pt2, pt3 );
+							listScore[ip2] = dScore;
+						}
+						double w = get<0>( poi ) -  get<0>( pt2 );
+						double h = get<1>( pt3 ) - get<1>( pt1 );
+
+						if ( dScore > dBestScore && ( bFinal || dScore > dLowScore || w > dWidthRatio * h) ){
+							dBestScore = dScore;
+							iFind = ip2;
+							bFind = true;
+						}
+					}
+
+					if ( !bFind )
+						break;
+
+					// 三角形を作成する
+					MakeTriangle( listHead[iFind+0], listHead[iFind+2], listHead[iFind+1] );
+					listHead.erase( listHead.begin() + iFind + 1 );
+					listScore.erase( listScore.begin() + iFind );
+
+					// スコアを再計算
+					for( int iip=std::max(0, iFind-1); iip<iFind; ++iip ) {
+						listScore[iip] = 0;
+					}
+				}
+			}
         }
 
         // 結果を作成する
