@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 
 // CDelaunayViewerDlg ダイアログ
@@ -36,4 +37,8 @@ public:
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
     afx_msg void OnRButtonDblClk(UINT nFlags, CPoint point);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnBnClickedRadDelaunay();
+	afx_msg void OnBnClickedRadOriginal();
+	CButton m_RAD_Original;
+	CButton m_RAD_Delaunay;
 };

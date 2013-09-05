@@ -73,6 +73,8 @@ CDelaunayViewerDlg::CDelaunayViewerDlg(CWnd* pParent /*=NULL*/)
 void CDelaunayViewerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_RAD_DELAUNAY, m_RAD_Delaunay);
+	DDX_Control(pDX, IDC_RAD_ORIGINAL, m_RAD_Original);
 }
 
 BEGIN_MESSAGE_MAP(CDelaunayViewerDlg, CDialogEx)
@@ -82,6 +84,8 @@ BEGIN_MESSAGE_MAP(CDelaunayViewerDlg, CDialogEx)
     ON_WM_LBUTTONDBLCLK()
     ON_WM_RBUTTONDBLCLK()
     ON_WM_ERASEBKGND()
+	ON_BN_CLICKED(IDC_RAD_DELAUNAY, &CDelaunayViewerDlg::OnBnClickedRadDelaunay)
+	ON_BN_CLICKED(IDC_RAD_ORIGINAL, &CDelaunayViewerDlg::OnBnClickedRadOriginal)
 END_MESSAGE_MAP()
 
 
@@ -110,6 +114,8 @@ BOOL CDelaunayViewerDlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
+
+	m_RAD_Delaunay.SetCheck(BST_CHECKED);
 
 	// このダイアログのアイコンを設定します。アプリケーションのメイン ウィンドウがダイアログでない場合、
 	//  Framework は、この設定を自動的に行います。
@@ -217,27 +223,29 @@ void CDelaunayViewerDlg::CalcDelaunay() {
 
     if ( g_listPoint.size() < 3 )
         return;
-    
-#if 1
-    // ヒューリスティクス手法による分割
-    GeoLib::Triangulation2D triangulation;
-    triangulation.Apply( g_listPoint.begin(), g_listPoint.end() );
 
-    auto ii = triangulation.cbegin(), ii_end = triangulation.cend();
-    for( ; ii != ii_end; ++ii ) {
-        g_listTris.push_back( g_listPoint[*ii] );
-    }
+	UpdateData(FALSE);
 
-#else
-    // ドロネー分割手法による分割
-    GeoLib::Delaunay2D<> delaunay;
-    delaunay.Apply( g_listPoint.begin(), g_listPoint.end() );
+	if ( m_RAD_Original.GetCheck() == BST_CHECKED ) {
+		// ヒューリスティクス手法による分割
+		GeoLib::Triangulation2D triangulation;
+		triangulation.Apply( g_listPoint.begin(), g_listPoint.end() );
 
-    auto ii = delaunay.cbegin(), ii_end = delaunay.cend();
-    for( ; ii != ii_end; ++ii ) {
-        g_listTris.push_back( g_listPoint[*ii] );
-    }
-#endif
+		auto ii = triangulation.cbegin(), ii_end = triangulation.cend();
+		for( ; ii != ii_end; ++ii ) {
+			g_listTris.push_back( g_listPoint[*ii] );
+		}
+	}
+	else {
+		// ドロネー分割手法による分割
+		GeoLib::Delaunay2D<> delaunay;
+		delaunay.Apply( g_listPoint.begin(), g_listPoint.end() );
+
+		auto ii = delaunay.cbegin(), ii_end = delaunay.cend();
+		for( ; ii != ii_end; ++ii ) {
+			g_listTris.push_back( g_listPoint[*ii] );
+		}
+	}
 }
 
 void CDelaunayViewerDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
@@ -283,4 +291,18 @@ BOOL CDelaunayViewerDlg::OnEraseBkgnd(CDC* pDC)
 {
 //    return CDialogEx::OnEraseBkgnd(pDC);
     return TRUE;
+}
+
+
+void CDelaunayViewerDlg::OnBnClickedRadDelaunay()
+{
+	CalcDelaunay();
+	Invalidate();
+}
+
+
+void CDelaunayViewerDlg::OnBnClickedRadOriginal()
+{
+	CalcDelaunay();
+	Invalidate();
 }
