@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_53_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_57_0</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
@@ -73,7 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_54_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\Library;..\Library\MPIR;..\Library\boost_1_57_0</AdditionalIncludeDirectories>
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
