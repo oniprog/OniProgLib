@@ -31,4 +31,10 @@ double  GetDistancePP_2( const _Point_2 &p1, const _Point_2 &p2 ) {
     return hypot( get<0>(p1) - get<0>(p2), get<1>(p1) - get<1>(p2) );
 }
 
+template<class _Point_2>
+double	GetDistancePL_2( const _Point_2 &pl1, const _Point_2 &pl2, const _Point_2 &poi ) {
+	double dT = DotProduct_2( poi - pl1, pl2 - pl1 ) / DotProduct_2( pl2 - pl1, pl2 - pl1 );
+	return GetDistancePP_2( pl1 * (1-dT) + pl2 * dT, poi );
+}
+
 };	// namespace GeoLib

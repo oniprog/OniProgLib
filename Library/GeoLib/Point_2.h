@@ -79,12 +79,31 @@ public:
 		return Point_2T<_Value>( p1.GetX() * v_, p1.GetY() * v_ );
 	}
 
+	friend bool operator==( const Point_2T<_Value>&p1, const Point_2T<_Value> &p2 ) {
+		return p1.GetX() == p2.GetX() && p1.GetY() == p2.GetY();
+	}
+	friend bool operator!=( const Point_2T<_Value>&p1, const Point_2T<_Value> &p2 ) {
+		return !(p1==p2);
+	}
+	friend bool operator<( const Point_2T<_Value>&p1, const Point_2T<_Value> &p2 ) {
+		if ( p1.GetX() != p2.GetX() ) return p1.GetX() < p2.GetX();
+		return p1.GetY() < p2.GetY();
+	}
 
 private:
 	_Value		m_v[2];
 };
 
 typedef Point_2T<double>	Point_2;
+///////////////////////////////////////////////////////////////////////////////////////////////
+template<class _Point_2>
+_Point_2 GetMinPoint_2( const _Point_2 &p1, const _Point_2 &p2 ) {
+	return _Point_2( std::min( get<0>(p1), get<0>(p2) ), std::min( get<1>(p1), get<1>(p2) ) );
+}
+template<class _Point_2>
+_Point_2 GetMaxPoint_2( const _Point_2 &p1, const _Point_2 &p2 ) {
+	return _Point_2( std::max( get<0>(p1), get<0>(p2) ), std::max( get<1>(p1), get<1>(p2) ) );
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 namespace traits {

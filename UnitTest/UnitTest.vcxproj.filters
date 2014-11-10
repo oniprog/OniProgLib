@@ -70,6 +70,9 @@
     <ClCompile Include="Test\GeoLib\TestTriangulation2D.cpp">
       <Filter>Test\GeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="Test\GeoLib\TestFastCrossSegment.cpp">
+      <Filter>Test\GeoLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\GeoLib\Point_2.h">
@@ -109,6 +112,9 @@
       <Filter>Library\ThreadLib</Filter>
     </ClInclude>
     <ClInclude Include="..\Library\GeoLib\Triangulation2D.h">
+      <Filter>Library\GeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\GeoLib\FastCrossSegment.h">
       <Filter>Library\GeoLib</Filter>
     </ClInclude>
   </ItemGroup>
